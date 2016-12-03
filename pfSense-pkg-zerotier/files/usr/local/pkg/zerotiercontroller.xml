@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE packagegui SYSTEM "../schema/packages.dtd">
+<?xml-stylesheet type="text/xsl" href="../xsl/package.xsl"?>
+<packagegui>
+	<name>zerotiercontroller</name>
+	<title>ZeroTier</title>
+	<include_file>/usr/local/pkg/zerotier.inc</include_file>
+	<tabs>
+		<tab>
+			<text>Client</text>
+			<url>/pkg.php?xml=zerotier.xml</url>
+		</tab>
+		<tab>
+			<text>Client Status</text>
+			<url>/zerotier_status.php</url>
+		</tab>
+		<tab>
+			<text>Controller</text>
+			<url>/pkg.php?xml=zerotiercontroller.xml</url>
+			<active/>
+		</tab>
+		<tab>
+			<text>Network Members</text>
+			<url>/zerotier_controller_auth_member.php</url>
+		</tab>
+	</tabs>
+	<adddeleteeditpagefields>
+	   <columnitem>
+		 <fielddescr>Network ID</fielddescr>
+		 <fieldname>network</fieldname>
+	   </columnitem>
+	   <columnitem>
+		 <fielddescr>Network Name</fielddescr>
+		 <fieldname>name</fieldname>
+	   </columnitem>	
+	   <columnitem>
+		 <fielddescr>Private</fielddescr>
+		 <fieldname>private</fieldname>
+	   </columnitem>		   
+	</adddeleteeditpagefields>
+	<fields>
+		<field>
+			<fielddescr>Network ID</fielddescr>
+			<fieldname>network</fieldname>
+			<description>A 6 digit ID that is appended to the sever address. Leave blank to use a random ID. 11NOTE: Changing the Network ID after a network has been created will cause the original network to be deleted from the controller.</description>
+			<type>input</type>
+			<size>6</size>
+		</field>
+		
+		<field>
+			<fielddescr>Network Name</fielddescr>
+			<fieldname>name</fieldname>
+			<description>A short name for this network</description>
+			<type>input</type>
+			<size>16</size>
+		</field>
+		
+		<field>
+			<fielddescr>Private</fielddescr>
+			<fieldname>private</fieldname>
+			<description>Is access control enabled?</description>
+			<type>checkbox</type>
+		</field>
+		
+		<field>
+			<fielddescr>Broadcast</fielddescr>
+			<fieldname>enablebroadcast</fieldname>
+			<description>Ethernet ff:ff:ff:ff:ff:ff allowed?</description>
+			<type>checkbox</type>
+		</field>
+		
+		<field>
+			<fielddescr>Passive Bridging</fielddescr>
+			<fieldname>allowpassivebridging</fieldname>
+			<description>Allow any member to bridge (very experimental)</description>
+			<type>checkbox</type>
+		</field>
+
+		<field>
+			<fielddescr>Auto Assign IPv4</fielddescr>
+			<fieldname>v4assignmode</fieldname>
+			<description>Auto-assign IPv4 from pool(s)</description>
+			<type>checkbox</type>
+		</field>
+
+		<field>
+			<fielddescr>Auto Assign IPv6</fielddescr>
+			<fieldname>v6assignmode</fieldname>
+			<description>Select method(s) to use when assigning IPv6 addresses.</description>
+			<type>select</type>
+			<multiple/>
+			<options>
+				<option><name>RFC4193</name><value>rfc4193</value></option>
+				<option><name>6PLANE</name><value>6plane</value></option>
+				<option><name>IPv6 Pool{s}</name><value>zt</value></option>
+			</options>
+		</field>
+
+		<field>
+			<fielddescr>Multicast Limit</fielddescr>
+			<fieldname>multicastlimit</fieldname>
+			<description>Maximum recipients for a multicast packet</description>
+			<type>input</type>
+			<size>9</size>
+		</field>
+
+		<field>
+			<fielddescr>Routes</fielddescr>
+			<fieldname>routes</fieldname>
+			<description>Comma separated prefix list</description>
+			<type>input</type>
+			<size>15</size>
+		</field>
+		
+		<field>
+			<fielddescr>IPv4 Assignment Pool Range Start IP</fielddescr>
+			<fieldname>ipv4rangestart</fieldname>
+			<description>Note: IP assignments are only used if they fall within a managed route.</description>
+			<type>input</type>
+			<size>15</size>
+		</field>
+		<field>
+			<fielddescr>IPv4 Assignment Pool Range End IP</fielddescr>
+			<fieldname>ipv4rangeend</fieldname>
+			<type>input</type>
+			<size>15</size>
+		</field>
+
+		<field>
+			<fielddescr>IPv6 Assignment Pool Range Start IP</fielddescr>
+			<fieldname>ipv6rangestart</fieldname>
+			<description>Note: IP assignments are only used if they fall within a managed route.</description>
+			<type>input</type>
+			<size>15</size>
+		</field>
+		<field>
+			<fielddescr>IPv6 Assignment Pool Range End IP</fielddescr>
+			<fieldname>ipv6rangeend</fieldname>
+			<type>input</type>
+			<size>15</size>
+		</field>
+
+ 		<field>
+			<fielddescr>Allow Any Protocol</fielddescr>
+			<fieldname>allowallprotocols</fieldname>
+			<description>This option overrides the other protocol selections</description>
+			<type>checkbox</type>
+		</field>	
+		<field>
+			<fielddescr>Allow IPv4</fielddescr>
+			<fieldname>allowipv4</fieldname>
+			<description>Allow IPv4 and ARP frame types</description>
+			<type>checkbox</type>
+		</field>
+		<field>
+			<fielddescr>Allow IPv6</fielddescr>
+			<fieldname>allowipv6</fieldname>
+			<description>Allow IPv6 frame types</description>
+			<type>checkbox</type>
+		</field>
+    </fields>
+	<custom_add_php_command_late>
+		zerotier_controller_sync();
+	</custom_add_php_command_late>
+	<custom_delete_php_command>
+		zerotier_controller_sync_delete();
+	</custom_delete_php_command>
+	<custom_php_validation_command>
+		validate_form_zerotier_controller($_POST, $input_errors);
+	</custom_php_validation_command>
+</packagegui>

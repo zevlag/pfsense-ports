@@ -1,0 +1,8 @@
+pkg/zerotier.inc
+pkg/zerotier.xml
+pkg/zerotiercontroller.xml
+www/zerotier_controller_auth_member.php
+www/zerotier_status.php
+/etc/inc/priv/zerotier.priv.inc
+%%DATADIR%%/info.xml
+@dir /etc/inc/priv

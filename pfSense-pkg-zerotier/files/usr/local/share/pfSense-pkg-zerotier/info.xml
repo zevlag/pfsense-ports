@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<pfsensepkgs>
+	<package>
+		<name>zerotier</name>
+		<internal_name>zerotier</internal_name>
+		<pkginfolink>https://forum.pfsense.org/index.php?topic=102404</pkginfolink>
+		<descr>ZeroTier is a software-based managed Ethernet switch for planet Earth.</descr>
+		<website>https://www.zerotier.com/</website>
+		<category>Services</category>
+		<configurationfile>zerotier.xml</configurationfile>
+		<version>%%PKGVERSION%%</version>
+		<status>Beta</status>
+		<required_version>2.3</required_version>
+		<maintainer>josh@zevlag.com</maintainer>
+		<only_for_archs>i386 amd64</only_for_archs>
+	</package>
+</pfsensepkgs>
+
+
