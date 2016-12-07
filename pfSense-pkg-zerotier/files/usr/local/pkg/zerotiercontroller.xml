@@ -42,7 +42,7 @@
 		<field>
 			<fielddescr>Network ID</fielddescr>
 			<fieldname>network</fieldname>
-			<description>A 6 digit ID that is appended to the sever address. Leave blank to use a random ID. 11NOTE: Changing the Network ID after a network has been created will cause the original network to be deleted from the controller.</description>
+			<description>A 6 digit ID that is appended to the sever address. Leave blank to use a random ID. NOTE: Changing the Network ID after a network has been created will cause the original network to be deleted from the controller.</description>
 			<type>input</type>
 			<size>6</size>
 		</field>
